@@ -1,6 +1,6 @@
-# f23wb17Somanaboina
+# s23db17Somanaboina
 
-### This is assignment related to EXPRESS server with pug
+### This is assignment related to MongoDb server
 
 [Hosted Link on Render](https://s23db17somanaboina.onrender.com)
 
