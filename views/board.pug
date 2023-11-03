@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1= title
+  p Query Parameters: Rows: #{query.rows} , Cols: #{query.cols}
+
+  -
+    var rows = Number(query.rows);
+    var cols = Number(query.cols);
+  
+  -if (!Number.isInteger(rows) || !Number.isInteger(cols)) 
+    p Please enter valid integer values for rows and cols.
+  -else if (rows < 1 || rows > 10)
+    p Rows must be in the range of 1 to 10.
+  -else if (cols < 1 || cols > 10)
+    p Cols must be in the range of 1 to 10.
+  -else
+    table#outer
+      - for (let i = 0; i < rows; i++){
+        tr#middle
+        - for (let j = 0; j < cols; j++)
+            td= (i === j) ? 1 : (i === j - 1) ? i : (i === j + 1) ? 2 : 0
+      - }
