@@ -2,16 +2,17 @@ extends layout
 
 block content
   h1= title
-  - var results = [{ name: "RestaurantA", cuisine: "Italian", rating: 4.5 }, { name: "RestaurantB", cuisine: "Mexican", rating: 4.2 }, { name: "RestaurantC", cuisine: "Japanese", rating: 4.0 }]
+  //- - var results = [{ name: "RestaurantA", cuisine: "Italian", rating: 4.5 }, { name: "RestaurantB", cuisine: "Mexican", rating: 4.2 }, { name: "RestaurantC", cuisine: "Japanese", rating: 4.0 }]
+  - var items = results
    div.container-fluid
     div.row
-     each item in results
+     each item in items
       div.col-sm-2
        h3 #{item.name}
        p Cuisine: #{item.cuisine}
        p Rating: #{item.rating}
 
-     each item, index in results
+     each item, index in items
       div(onclick=`buy(${index})`)
        Item #{index + 1}. #{item.cuisine}
 
