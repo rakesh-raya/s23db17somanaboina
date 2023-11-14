@@ -9,5 +9,6 @@ var router = express.Router();
 
 /* GET restaurants */
 router.get('/', restaurant_controllers.restaurant_view_all_Page );
+router.get('/detail', restaurant_controllers.restaurant_view_one_Page);
 
 module.exports = router;

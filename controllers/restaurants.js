@@ -28,6 +28,20 @@ res.send(`{"error": ${err}}`);
 }
 };
 
+// Handle a show one view with id specified by query
+exports.restaurant_view_one_Page = async function(req, res) {
+    console.log("single view for id " + req.query.id)
+    try{
+    result = await Restaurant.findById(req.query.id)
+    res.render('restaurantdetail',
+    { title: 'Restaurant Detail', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
+
 // Handle Restaurant create on POST.
 exports.restaurant_create_post = async function(req, res) {
 console.log(req.body)
@@ -72,9 +86,24 @@ res.send(`{"error": document for id ${req.params.id} not found`);
 // res.send('NOT IMPLEMENTED: Restaurant create POST');
 // };
 // Handle Restaurant delete form on DELETE.
-exports.restaurant_delete = function(req, res) {
-res.send('NOT IMPLEMENTED: Restaurant delete DELETE ' + req.params.id);
-};
+// exports.restaurant_delete = function(req, res) {
+// res.send('NOT IMPLEMENTED: Restaurant delete DELETE ' + req.params.id);
+// };
+
+// Handle Restaurant delete on DELETE.
+exports.restaurant_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await Restaurant.findByIdAndDelete(req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
+    };
+    
+
 // Handle Restaurant update form on PUT.
 // exports.restaurant_update_put = function(req, res) {
 // res.send('NOT IMPLEMENTED: Restaurant update PUT' + req.params.id);
