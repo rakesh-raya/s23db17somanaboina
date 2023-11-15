@@ -56,7 +56,19 @@ exports.restaurant_create_Page = function(req, res) {
     }
     };
     
-
+    // Handle building the view for updating a restaurant.
+// query provides the id
+exports.restaurant_update_Page = async function(req, res) {
+    console.log("update view for item "+ req.query.id)
+    try{
+    let result = await Restaurant.findById(req.query.id)
+    res.render('restaurantupdate', { title: 'Restaurant Update', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };
 
 // Handle Restaurant create on POST.
 exports.restaurant_create_post = async function(req, res) {
