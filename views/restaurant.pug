@@ -8,12 +8,12 @@ block content
     div.row
      each item in items
       div.col-sm-2
-       h3 #{item.name}
-       p Cuisine: #{item.cuisine}
-       p Rating: #{item.rating}
+       h3(style=`color: yellow;background-color: #444;`) #{item.name}
+       p(style=`color: green;background-color: #aaa;`) Cuisine: #{item.cuisine}
+       p(style=`color: red;background-color: #ddd;`) Rating: #{item.rating}
 
      each item, index in items
-      div(onclick=`buy(${index})`)
+      div(onclick=`buy(${index})`,style=`border:1px solid`)
        Item #{index + 1}. #{item.cuisine}
 
   script.
