@@ -4,14 +4,13 @@ block content
   h1= title
   //- - var results = [{ name: "RestaurantA", cuisine: "Italian", rating: 4.5 }, { name: "RestaurantB", cuisine: "Mexican", rating: 4.2 }, { name: "RestaurantC", cuisine: "Japanese", rating: 4.0 }]
   - var items = results
-   div.container-fluid
-    div.row
+   div(class="container-fluid")
+    div(class="row m-1")
      each item in items
-      div.col-sm-2
-       h3(style=`color: yellow;background-color: #444;`) #{item.name}
-       p(style=`color: green;background-color: #aaa;`) Cuisine: #{item.cuisine}
-       p(style=`color: red;background-color: #ddd;`) Rating: #{item.rating}
-
+      -let destination  = `dispatch("/restaurant/update?id=${item._id}")`
+      div(class="row-sm-2",class="m-1") Item #{item.name}(#{item.cuisine}) is #{item.rating}
+       button.btn( class="btn-primary ml-1", onclick= destination) Update 
+       
      each item, index in items
       div(onclick=`buy(${index})`,style=`border:1px solid`)
        Item #{index + 1}. #{item.cuisine}
@@ -19,4 +18,7 @@ block content
   script.
    function buy(index) {
     alert(`You purchased item ${index + 1}`);
+   }
+   function dispatch(path){
+    window.location.href=path
    }
