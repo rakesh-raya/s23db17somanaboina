@@ -1,14 +1,26 @@
 extends layout
-
 block content
-  h1= title
-  p Welcome to #{title} , this is an extra line added for local server
-  button(type="button", class="btn btn-secondary", onclick="goFaster()") Press Me
-  div(id="faster") Increase the speed
-  script.
-   var mph = 20;
-   var change = 1;
-   function goFaster() {
-     mph += change;
-     change += 1;
-     document.getElementById('faster').textContent = `MPH ${mph} with change ${change}.`;}
+ if (!user)
+  a(href="/login") Login
+  br
+  a(href="/register") Register
+ if (user)
+  p You are currently logged in as #{user.username}
+  a(href="/restaurant") Take me to restaurants
+  br
+  a(href="/logout") Logout
+
+//- extends layout
+
+//- block content
+//-   h1= title
+//-   p Welcome to #{title} , this is an extra line added for local server
+//-   button(type="button", class="btn btn-secondary", onclick="goFaster()") Press Me
+//-   div(id="faster") Increase the speed
+//-   script.
+//-    var mph = 20;
+//-    var change = 1;
+//-    function goFaster() {
+//-      mph += change;
+//-      change += 1;
+//-      document.getElementById('faster').textContent = `MPH ${mph} with change ${change}.`;}
