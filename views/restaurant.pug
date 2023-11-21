@@ -3,13 +3,19 @@ extends layout
 block content
   h1= title
   //- - var results = [{ name: "RestaurantA", cuisine: "Italian", rating: 4.5 }, { name: "RestaurantB", cuisine: "Mexican", rating: 4.2 }, { name: "RestaurantC", cuisine: "Japanese", rating: 4.0 }]
+  -let createPage  = `dispatch("/restaurant/create")`
+  button.btn( class="btn-primary ml-1", onclick= createPage) Create
   - var items = results
    div(class="container-fluid")
     div(class="row m-1")
      each item in items
       -let destination  = `dispatch("/restaurant/update?id=${item._id}")`
+      -let detailView  = `dispatch("/restaurant/detail?id=${item._id}")`
+      -let deleteView  = `dispatch("/restaurant/delete?id=${item._id}")`
       div(class="row-sm-2",class="m-1") Item #{item.name}(#{item.cuisine}) is #{item.rating}
-       button.btn( class="btn-primary ml-1", onclick= destination) Update 
+       button.btn( class="btn-primary ml-2", onclick= destination) Update 
+       button.btn( class="btn-secondary ml-2", onclick= detailView) Details
+       button.btn( class="btn-danger ml-2", onclick= deleteView) Delete
        
      each item, index in items
       div(onclick=`buy(${index})`,style=`border:1px solid`)
