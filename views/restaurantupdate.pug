@@ -21,12 +21,13 @@ block content
     input#cuisine(type='text', name='cuisine', value= cuisine )
    div.form-group
     label.restaurantAttr(for='rating') restaurant rating
-    input#rating(type='number', name='rating', value= rating )
+    input#rating(type='number', name='rating', value= rating,step='any' )
    input(type="submit")
   script.
    document.forms['RestaurantForm'].addEventListener('submit', (event) => {
     event.preventDefault();
     // TODO do something here to show user that form is being submitted
+    console.log(JSON.stringify(new FormData(event.target)))
     fetch(event.target.action, {
     method: 'PUT',
     body: new URLSearchParams(new FormData(event.target)) // event.target is the form
